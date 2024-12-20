@@ -36,7 +36,7 @@ query($cursor:String) {
 
 
 
-m="/mnt/anthropic/topics"
+m="./mnt/anthropic/topics"
 mkdir -p $m
 
 c(){

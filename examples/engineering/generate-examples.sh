@@ -1,6 +1,6 @@
 ```bash
 #!/bin/bash
-m="/mnt/anthropic/conversations";mkdir -p $m
+m="./mnt/anthropic/conversations";mkdir -p $m
 c(){mkdir -p "$m/$1";echo "$3">>"$m/$1/$2"}
 t="1. ";n="
 2. ";o="

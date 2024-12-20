@@ -11,5 +11,8 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.33.1",
     "fuse-native": "^2.2.6"
-  }
+  },
+  "trustedDependencies": [
+    "fuse-native"
+  ]
 }
