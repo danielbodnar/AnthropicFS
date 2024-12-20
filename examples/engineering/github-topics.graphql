@@ -1,0 +1,19 @@
+query TopicSearch($cursor: String) {
+  search(query: "is:public", type: REPOSITORY, first: 100, after: $cursor) {
+    repositoryCount
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    nodes {
+      repositoryTopics(first: 10) {
+        nodes {
+          topic {
+            name
+            stargazerCount
+          }
+        }
+      }
+    }
+  }
+}
