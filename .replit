@@ -1,8 +1,8 @@
-modules = ["bun-1.1", "bash", "nix", "nodejs-22", "replit-rtld-loader", "docker"]
+modules = ["bun-1.1", "bash", "nix", "nodejs-22", "replit-rtld-loader", "docker", "fuse"]
 run = "echo \"See readme for instructions on how to run this\""
 
 [nix]
-channel = "stable-24_05"
+channel = "unstable"
 
 [deployment]
 run = ["sh", "-c", "echo \"See readme for instructions on how to run this\""]

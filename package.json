@@ -1,5 +1,5 @@
 {
-  "name": "anthropic-fs",
+  "name": "anthropic-fuse",
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {

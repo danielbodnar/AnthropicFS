@@ -20,12 +20,6 @@ A FUSE-based filesystem interface for the Anthropic AI SDK, allowing you to inte
 - FUSE installed on your system
 - Anthropic API key
 
-### Install via npm
-
-```bash
-npm install anthropic-fuse
-```
-
 Or with Bun:
 
 ```bash
@@ -174,7 +168,7 @@ MIT License - see LICENSE file for details
 ## Support
 
 For support, please:
-1. Check the [Issues](https://github.com/yourusername/anthropic-fuse/issues) page
+1. Check the [Issues](https://github.com/danielbodnar/anthropicfs/issues) page
 2. Create a new issue if needed
 3. Join our [Discord community](https://discord.gg/yourdiscord)
 
@@ -195,4 +189,4 @@ A: Filesystem interfaces provide a familiar and universal way to interact with s
 A: While functional, please thoroughly test in your environment before using in production.
 
 **Q: What are the system requirements?**
-A: FUSE-compatible OS (Linux, macOS), Node.js 16+ or Bun runtime, and sufficient permissions to mount filesystems.
+A: FUSE-compatible OS (Linux, macOS), Bun runtime, and sufficient permissions to mount filesystems.
