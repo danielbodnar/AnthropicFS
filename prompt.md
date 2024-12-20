@@ -182,8 +182,8 @@ class AnthropicFS extends EventEmitter {
       if (parts.length === 1) {
         // Create new conversation
         const conversation = await this.anthropic.conversations.create({
-          model: 'claude-2',
-          max_tokens: 1000,
+          model: 'claude-3-5-sonnet-latest',
+          max_tokens: 8192,
         });
         this.conversations.set(conversation.id, conversation);
         return buffer.length;
@@ -234,7 +234,7 @@ To use the Anthropic FUSE filesystem:
 
 1. Installation:
 ```bash
-npm install @anthropic-ai/sdk fuse-native
+bun install @anthropic-ai/sdk fuse-native
 ```
 
 2. Mount the filesystem:
