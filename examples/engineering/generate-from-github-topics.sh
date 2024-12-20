@@ -3,7 +3,38 @@
 #gh api graphql -f query='query($cursor:String){search(query:"is:public",type:REPOSITORY,first:100,after:$cursor){repositoryCount pageInfo{endCursor hasNextPage} nodes{repositoryTopics(first:10){nodes{topic{name stargazerCount}}}}}}' | jq -c '.data.search.nodes[].repositoryTopics.nodes[].topic | select(.stargazerCount >= 250) | {name, repoCount: .stargazerCount}' | jq -s '{topics: .}'
 
 # Fetch topics and create filesystem
-topics=$(gh api graphql -f query='query($cursor:String){search(query:"is:public",type:REPOSITORY,first:100,after:$cursor){repositoryCount pageInfo{endCursor hasNextPage} nodes{repositoryTopics(first:10){nodes{topic{name stargazerCount}}}}}}' | jq -c '.data.search.nodes[].repositoryTopics.nodes[].topic | select(.stargazerCount >= 250) | {name, repoCount: .stargazerCount}' | jq -s '{topics: .}')
+#topics=$(gh api graphql -f query='query($cursor:String){search(query:"is:public",type:REPOSITORY,first:100,after:$cursor){repositoryCount pageInfo{endCursor hasNextPage} nodes{repositoryTopics(first:10){nodes{topic{name stargazerCount}}}}}}' | jq -c '.data.search.nodes[].repositoryTopics.nodes[].topic | select(.stargazerCount >= 250) | {name, repoCount: .stargazerCount}' | jq -s '{topics: .}')
+
+topics=$(gh api graphql -f query='
+query($cursor:String) {
+  search(query:"is:public", type:REPOSITORY, first:100, after:$cursor) {
+    repositoryCount
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    nodes {
+      ... on Repository {
+        repositoryTopics(first:10) {
+          nodes {
+            topic {
+              name
+              stargazerCount
+            }
+          }
+        }
+      }
+    }
+  }
+}' | jq -c '
+  .data.search.nodes[]
+  | select(.repositoryTopics != null) 
+  | .repositoryTopics.nodes[]
+  | select(.topic.stargazerCount >= 250)
+  | {name: .topic.name, repoCount: .topic.stargazerCount}
+' | jq -s '{topics: .}')
+
+
 
 m="/mnt/anthropic/topics"
 mkdir -p $m
